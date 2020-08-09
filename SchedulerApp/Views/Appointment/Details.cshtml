@@ -1,0 +1,61 @@
+﻿@model SchedulerApp.Helpers.ViewModels.ScheduledPassengersViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.AppointmentDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.AppointmentDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.Capacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.Capacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(m => m.Status)
+        </dd>
+    </dl>
+</div>
+<h4>Passenger Details</h4>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Weight</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var passenger in Model.Passengers)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => passenger.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => passenger.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => passenger.Weight)</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Total Passengers: @Model.TotalPassengers</td>
+                <td>Total Weight: @Model.TotalWeight</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+

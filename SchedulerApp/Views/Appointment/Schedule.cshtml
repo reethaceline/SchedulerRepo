@@ -1,0 +1,60 @@
+﻿@model SchedulerApp.Helpers.ViewModels.ScheduleAppointmentViewModel;
+@{
+    ViewData["Title"] = "Schedule Appointment";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Schedule">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label asp-for="AppointmentID" class="control-label"></label>
+                    <select asp-for="AppointmentID" class="form-control"
+                            asp-items="@(new SelectList(ViewBag.Appointments,"ID", "AppointmentDate"))">
+                    </select>
+                    <span asp-validation-for="AppointmentID" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="col-md-8">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Passengers.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <input asp-for="@Model.Passengers[i].ID" type="hidden" />
+                                        @Html.CheckBoxFor(m => m.Passengers[i].IsSelected)
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Passengers[i].FirstName" type="hidden" />
+                                        @Model.Passengers[i].FirstName
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Passengers[i].LastName" type="hidden" />
+                                        @Model.Passengers[i].LastName
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Passengers[i].Weight" type="hidden" />
+                                        @Model.Passengers[i].Weight
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

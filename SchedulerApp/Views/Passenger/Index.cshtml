@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SchedulerApp.Models.Passenger>
+
+@{
+    ViewData["Title"] = "View Passengers";
+}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Weight</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var passenger in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => passenger.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => passenger.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => passenger.Weight)</td>
+                <td>@Html.DisplayFor(modelItem => passenger.Status)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@passenger.ID">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    table {
+        width: 100%;
+    }
+
+    thead, tbody, tr, td, th {
+        display: block;
+    }
+
+    tr:after {
+        content: ' ';
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+
+    thead th {
+        height: 40px;
+        /*text-align: left;*/
+    }
+
+    tbody {
+        height: 400px;
+        overflow-y: auto;
+    }
+
+
+    tbody td, thead th {
+        width: 20%;
+        float: left;
+    }
+</style>

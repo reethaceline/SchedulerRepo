@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SchedulerApp.Models.Appointment>
+
+@{
+    ViewData["Title"] = "View Appointments";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Appointment Date</th>
+            <th>Capacity</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.AppointmentDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                    @if (item.Status != SchedulerApp.Helpers.Enums.AppointmentStatus.Denied)
+                    {
+                        @Html.Label(" | ");
+                        <a asp-action="Details" asp-route-id="@item.ID">View Scheduled Passengers</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
